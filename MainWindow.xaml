@@ -35,28 +35,28 @@
 
         <TabControl x:Name="TabControl">
             <!-- главная вкладка -->
-            <TabItem x:Name="MainTab" 
-                     TabIndex="0" 
-                     Tag="standart">
-
-                <TabItem.Header >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="3" Text="Главная страница"/>
-                        <Button x:Name="Delete" Content="X" 
-                                HorizontalContentAlignment="Center" 
-                                VerticalContentAlignment="Center"
-                                FontSize="10" Width="20" Height="20"                                 
-                                Click="Delete_Click"
-                                />
-                    </StackPanel>
-                </TabItem.Header>
+            <TabItem TabIndex="0" 
+                     Tag="standart" 
+                     MouseRightButtonUp="TabItem_MouseRightButtonUp">
+                
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Создать новую вкладку" Click="AddNewTab_Click"/>
+                        <MenuItem Header="Дублировать" Click="duplicate_Click"/>
+                        <MenuItem Header="Инкогнито" Click="incognito_Click"/>
+                        <MenuItem Header="Закрепить" Click="anchor_Click"/>
+                        <MenuItem Header="Обновить" Click="refresh_Click"/>
+                        <MenuItem Header="Печать" Click="print_Click"/>
+                        <MenuItem Header="Закрыть" Click="delete_Click"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <TabItem.Header>Новая вкладка</TabItem.Header>
 
                 <!-- браузер во вкладке -->
                 <cefSharp:ChromiumWebBrowser
                     x:Name="ChromiumWebBrowser" 
                     Address="http://www.google.com"
                     Margin="0,30,0,0">
-
                 </cefSharp:ChromiumWebBrowser>
             </TabItem>
         </TabControl>
@@ -67,14 +67,13 @@
                HorizontalAlignment="Left" 
                Width="1594" Height="30"/>
 
-        <!-- кнопка "добавить вкладку" -->
         <Button x:Name="AddNewTab" Content="+" 
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Top"
                 FontSize="20"
                 Margin="10,30,0,0"
                 Click="AddNewTab_Click"
-                MouseRightButtonUp="AddNewTab_MouseRightButtonUp" 
+                MouseRightButtonUp="incognito_Click"
                 Width="45" Height="30" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top"/>
